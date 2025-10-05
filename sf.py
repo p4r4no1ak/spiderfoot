@@ -494,6 +494,43 @@ def main():
                 sys.exit(-1)
 
             log.info(f"Successfully loaded {len(sfModules)} modules")
+            # Add fallback storage/output modules if missing
+            fallback_storage_modules = {
+                'sfp__stor_stdout': {
+                    'name': 'sfp__stor_stdout',
+                    'descr': 'Fallback: Outputs events to stdout',
+                    'opts': {},
+                    'optdescs': {},
+                    'provides': [],
+                    'consumes': [],
+                    'meta': {},
+                    'group': []
+                },
+                'sfp__stor_db': {
+                    'name': 'sfp__stor_db',
+                    'descr': 'Fallback: Stores events in DB',
+                    'opts': {},
+                    'optdescs': {},
+                    'provides': [],
+                    'consumes': [],
+                    'meta': {},
+                    'group': []
+                },
+                'sfp__stor_elasticsearch': {
+                    'name': 'sfp__stor_elasticsearch',
+                    'descr': 'Fallback: Stores events in Elasticsearch',
+                    'opts': {},
+                    'optdescs': {},
+                    'provides': [],
+                    'consumes': [],
+                    'meta': {},
+                    'group': []
+                }
+            }
+            for modname, modinfo in fallback_storage_modules.items():
+                if modname not in sfModules:
+                    log.warning(f"Module {modname} not found in loaded modules, adding fallback definition.")
+                    sfModules[modname] = modinfo
             sfConfig['__modules__'] = sfModules
 
             # Load correlation rules
