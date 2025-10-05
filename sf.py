@@ -680,7 +680,7 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
 
         prepare_scan_output(args)
 
-        execute_scan(loggingQueue, target, targetType, modlist, cfg, log)
+    execute_scan(loggingQueue, target, targetType, modlist, cfg, log, args)
 
         return
     except Exception as e:
@@ -859,7 +859,7 @@ def prepare_scan_output(args):
         print(headers)
 
 
-def execute_scan(loggingQueue, target, targetType, modlist, cfg, log):
+def execute_scan(loggingQueue, target, targetType, modlist, cfg, log, args):
     # Start running a new scan
     scanName = target
     scanId = SpiderFootHelpers.genScanInstanceId()
