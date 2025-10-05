@@ -890,9 +890,7 @@ def execute_scan(loggingQueue, target, targetType, modlist, cfg, log):
             if sfConfig['__logging']:
                 log.info(f"Scan completed with status {info[5]}")
             # Print closing bracket for JSON output if needed
-            if hasattr(cfg, '_format') and cfg['_format'] == 'json':
-                print("]")
-            elif isinstance(cfg, dict) and cfg.get('_format') == 'json':
+            if hasattr(args, 'o') and args.o == 'json':
                 print("]")
             sys.exit(0)
 
