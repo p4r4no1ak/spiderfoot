@@ -679,9 +679,7 @@ def start_scan(sfConfig: dict, sfModules: dict, args, loggingQueue) -> None:
             cfg['__outputfilter'] = args.t.split(",")
 
         prepare_scan_output(args)
-
-    execute_scan(loggingQueue, target, targetType, modlist, cfg, log, args)
-
+        execute_scan(loggingQueue, target, targetType, modlist, cfg, log, args)
         return
     except Exception as e:
         log.critical(f"Unhandled exception in start_scan: {e}", exc_info=True)
